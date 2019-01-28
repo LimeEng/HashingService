@@ -1,0 +1,54 @@
+[
+  {
+    "algo": "md5",
+    "strings": [
+      {
+        "raw": "Hello World!",
+        "hash": "ed076287532e86365e841e92bfc50d8c"
+      },
+      {
+        "raw": "The brown fox jumped over the lazy dog",
+        "hash": "d07cb1ec08d96c57ccb141a159e0e57b"
+      }
+    ]
+  },
+  {
+    "algo": "sha1",
+    "strings": [
+      {
+        "raw": "Hello World!",
+        "hash": "2ef7bde608ce5404e97d5f042f95f89f1c232871"
+      },
+      {
+        "raw": "The brown fox jumped over the lazy dog",
+        "hash": "48ae29f5da037774f3380d901c18e8c8404bf62d"
+      }
+    ]
+  },
+  {
+    "algo": "sha256",
+    "strings": [
+      {
+        "raw": "Hello World!",
+        "hash": "7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069"
+      },
+      {
+        "raw": "The brown fox jumped over the lazy dog",
+        "hash": "d306d224ac35f515d64c4c7586b7d7bd8d3ad886bf782d1f18cec867794cfcec"
+      }
+    ]
+  },
+  {
+    "algo": "sha512",
+    "strings": [
+      {
+        "raw": "Hello World!",
+        "hash": "861844d6704e8573fec34d967e20bcfef3d424cf48be04e6dc08f2bd58c729743371015ead891cc3cf1c9d34b49264b510751b1ff9e537937bc46b5d6ff4ecc8"
+      },
+      {
+        "raw": "The brown fox jumped over the lazy dog",
+        "hash": "681de139224bfac802ea48b86764608ebea75d3030a1976704f500b2e817978ecfee6b17729dc31146cf648b870cddb8dc533e22e3a4b0c43ccd77b9f9914f36"
+      }
+    ]
+  }
+]
