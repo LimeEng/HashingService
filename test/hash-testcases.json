@@ -1,6 +1,6 @@
 [
   {
-    "algo": "md5",
+    "algorithm": "md5",
     "strings": [
       {
         "raw": "Hello World!",
@@ -13,7 +13,7 @@
     ]
   },
   {
-    "algo": "sha1",
+    "algorithm": "sha1",
     "strings": [
       {
         "raw": "Hello World!",
@@ -26,7 +26,7 @@
     ]
   },
   {
-    "algo": "sha256",
+    "algorithm": "sha256",
     "strings": [
       {
         "raw": "Hello World!",
@@ -39,7 +39,7 @@
     ]
   },
   {
-    "algo": "sha512",
+    "algorithm": "sha512",
     "strings": [
       {
         "raw": "Hello World!",
