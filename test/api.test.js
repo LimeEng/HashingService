@@ -34,6 +34,46 @@ describe('API', function () {
           }
         }
       })
+      it('should return 404 with invalid algo', async function () {
+        async function postWithAlgo(algo) {
+          return axios.post('http://localhost:3000/hash', {
+            algo: algo,
+            content: utf8ToBase64('Hello World!')
+          })
+        }
+        const results = ['', null, 'sha256652'].map(postWithAlgo)
+        const promises = results.map(result => {
+          return result.then(res => {
+            assert(false)
+          }).catch(err => {
+            assert.deepStrictEqual(err.response.status, 404)
+            assert(err.response.data.error) // Should contain data
+          })
+        })
+        return Promise.all(promises)
+      })
+      it('should return 404 with invalid content', async function () {
+        async function postWithContent(content) {
+          return axios.post('http://localhost:3000/hash', {
+            algo: 'md5',
+            content: content
+          })
+        }
+        const results = ['', null].map(postWithContent)
+        const promises = results.map(result => {
+          return result.then(res => {
+            assert(false)
+          }).catch(err => {
+            if (err.response) {
+              assert.deepStrictEqual(err.response.status, 404)
+              assert(err.response.data.error) // Should contain data
+            } else {
+              assert(false)
+            }
+          })
+        })
+        return Promise.all(promises)
+      })
     })
   })
 
@@ -54,9 +94,21 @@ describe('API', function () {
 })
 
 function utf8ToBase64(content) {
-  return Buffer.from(content, 'utf8').toString('base64')
+  return convert('utf8').to('base64').with(content)
 }
 
 function base64ToHex(content) {
-  return Buffer.from(content, 'base64').toString('hex')
+  return convert('base64').to('hex').with(content)
+}
+
+function convert(encoding) {
+  return {
+    to: output => {
+      return {
+        with: content => {
+          return Buffer.from(content, encoding).toString(output)
+        }
+      }
+    }
+  }
 }
