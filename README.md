@@ -2,13 +2,13 @@
 
 # Hashing Service
 
-This service provides an online interface to hash arbitrary strings and files via a JSON API. These hashes can be used to verify the integrity of files or to protect passwords, if they are used correctly.
+This service provides an interface to hash arbitrary strings and files via a JSON API. These hashes can be used to verify the integrity of files or to protect passwords, if they are used correctly.
 
 - [API](#api)
 
 ## API
 
-- `GET /hash/algos`
+- `GET /hash/algorithms`
 
   Returns a JSON array containing all available hashing algorithms.
 
@@ -24,20 +24,20 @@ This service provides an online interface to hash arbitrary strings and files vi
   **Example POST body**
   ```
   {
-  "algo": "sha256",
-  "content": "SGVsbG8gV29ybGQh"
+    "algorithm": "sha256",
+    "content": "SGVsbG8gV29ybGQh"
   }
   ```
   **Example successful response (200)**
   ```
   {
-  "algo": "sha256",
-  "hash": "f4OxZX/x/FO5LcGBSKHWXfwtSx+j1ncoSt3SABJtkGk="
+    "algorithm": "sha256",
+    "hash": "f4OxZX/x/FO5LcGBSKHWXfwtSx+j1ncoSt3SABJtkGk="
   }
   ```
   **Example failed response (404)**
   ```
   {
-  "error": "Invalid algorithm"
+    "error": "Invalid algorithm"
   }
   ```
