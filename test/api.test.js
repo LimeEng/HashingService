@@ -7,7 +7,7 @@ const server = require('../lib/server')
 
 const hashes = require('./hash-testcases.json')
 
-const validHashAlgos = hashes.map(item => item.algo)
+const validHashAlgos = hashes.map(item => item.algorithm)
 
 describe('API', function () {
   let runningServer = undefined
@@ -26,11 +26,11 @@ describe('API', function () {
         for (const algo of hashes) {
           for (const testCase of algo.strings) {
             const result = await axios.post('http://localhost:3000/hash', {
-              algo: algo.algo,
+              algorithm: algo.algorithm,
               content: utf8ToBase64(testCase.raw)
             })
-            assert.deepStrictEqual(result.data.algo, algo.algo)
-            assert.deepStrictEqual(base64ToHex(result.data.hash), testCase.hash, 'Hash for algo ' + algo.algo + ' does not match')
+            assert.deepStrictEqual(result.data.algorithm, algo.algorithm)
+            assert.deepStrictEqual(base64ToHex(result.data.hash), testCase.hash, 'Hash for algo ' + algo.algorithm + ' does not match')
           }
         }
       })
@@ -79,13 +79,13 @@ describe('API', function () {
 
   describe('GET', function () {
     describe('/hash', function () {
-      describe('/algos', function () {
+      describe('/algorithms', function () {
         it('should return 200', async function () {
-          const result = await axios.get('http://localhost:3000/hash/algos')
+          const result = await axios.get('http://localhost:3000/hash/algorithms')
           assert(result.status === 200)
         })
-        it('should return the correct algos', async function () {
-          const result = await axios.get('http://localhost:3000/hash/algos')
+        it('should return the correct algorithms', async function () {
+          const result = await axios.get('http://localhost:3000/hash/algorithms')
           assert.deepStrictEqual(result.data, validHashAlgos)
         })
       })
