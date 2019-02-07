@@ -26,18 +26,22 @@ describe('API', function () {
         for (const algo of hashes) {
           for (const testCase of algo.strings) {
             const result = await axios.post('http://localhost:3000/hash', {
-              algorithm: algo.algorithm,
+              algorithms: [
+                algo.algorithm
+              ],
               content: utf8ToBase64(testCase.raw)
             })
-            assert.deepStrictEqual(result.data.algorithm, algo.algorithm)
-            assert.deepStrictEqual(base64ToHex(result.data.hash), testCase.hash, 'Hash for algo ' + algo.algorithm + ' does not match')
+            assert.deepStrictEqual(result.data.algorithms, [algo.algorithm])
+            assert.deepStrictEqual(base64ToHex(result.data[algo.algorithm].hash), testCase.hash, 'Hash for algo ' + algo.algorithm + ' does not match')
           }
         }
       })
       it('should return 404 with invalid algo', async function () {
         async function postWithAlgo(algo) {
           return axios.post('http://localhost:3000/hash', {
-            algo: algo,
+            algorithms: [
+              algo
+            ],
             content: utf8ToBase64('Hello World!')
           })
         }
@@ -55,7 +59,9 @@ describe('API', function () {
       it('should return 404 with invalid content', async function () {
         async function postWithContent(content) {
           return axios.post('http://localhost:3000/hash', {
-            algo: 'md5',
+            algorithms: [
+              "md5"
+            ],
             content: content
           })
         }
