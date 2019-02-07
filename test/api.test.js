@@ -36,16 +36,20 @@ describe('API', function () {
           }
         }
       })
-      it('should return 404 with invalid algo', async function () {
-        async function postWithAlgo(algo) {
+      it('should return correct hashes for multiple algorithms', async function () {
+
+      })
+      it('should ignore duplicate algorithms and return the correct hashes', async function () {
+
+      })
+      it('should return 404 if the algorithms field is malformed', async function () {
+        async function postWithAlgo(algorithms) {
           return axios.post('http://localhost:3000/hash', {
-            algorithms: [
-              algo
-            ],
+            algorithms: algorithms,
             content: utf8ToBase64('Hello World!')
           })
         }
-        const results = ['', null, 'sha256652'].map(postWithAlgo)
+        const results = ['', null, 'sha256652', 'sha256', ['sha256', 'sha256652']].map(postWithAlgo)
         const promises = results.map(result => {
           return result.then(res => {
             assert(false)
