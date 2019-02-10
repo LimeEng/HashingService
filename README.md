@@ -49,6 +49,6 @@ This service provides an interface to hash arbitrary strings and files via a JSO
   **Example failed response (404)**
   ```
   {
-    "error": "..."
+    "error": "Malformed algorithms field"
   }
   ```
