@@ -32,7 +32,7 @@ describe('API', function () {
               content: utf8ToBase64(hash.plain)
             })
             assert.deepStrictEqual(result.data.algorithms, [algo])
-            assert.deepStrictEqual(base64ToHex(result.data[algo].hash), testCase[algo], 'Hash for algo ' + algo + ' does not match')
+            assert.deepStrictEqual(base64ToHex(result.data[algo].hash), hash[algo], 'Hash for algo ' + algo + ' does not match')
           }
         }
       })
@@ -45,7 +45,7 @@ describe('API', function () {
         const data = result.data
         assert.deepStrictEqual(data.algorithms, validHashAlgos)
         for (const algo of validHashAlgos) {
-          assert.deepStrictEqual(data[algo].hash, testCase[algo])
+          assert.deepStrictEqual(base64ToHex(data[algo].hash), testCase[algo])
         }
       })
       it('should return 404 if the algorithms field is malformed', async function () {
