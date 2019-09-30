@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/LimeEng/HashingService.svg?branch=master)](https://travis-ci.com/LimeEng/HashingService)
+![](https://github.com/LimeEng/HashingService/workflows/Node%20CI/badge.svg)
 
 # Hashing Service
 
